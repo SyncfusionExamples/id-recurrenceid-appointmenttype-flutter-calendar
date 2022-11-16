@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-void main() => runApp(RecurrenceAppointment());
+void main() => runApp(const RecurrenceAppointment());
 class RecurrenceAppointment extends StatelessWidget {
+  const RecurrenceAppointment({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: AppointmentDetails(),
     );
   }
 }
 class AppointmentDetails extends StatefulWidget {
+  const AppointmentDetails({super.key});
+
   @override
   State<StatefulWidget> createState() => ScheduleExample();
 }
@@ -25,7 +28,7 @@ class ScheduleExample extends State<AppointmentDetails> {
           dataSource: _getDataSource(),
           view: CalendarView.week,
           onTap: calendarTapped,
-          allowedViews: [
+          allowedViews: const [
             CalendarView.day,
             CalendarView.week,
             CalendarView.workWeek,
@@ -36,17 +39,17 @@ class ScheduleExample extends State<AppointmentDetails> {
             CalendarView.timelineMonth,
             CalendarView.schedule
           ],
-          monthViewSettings: MonthViewSettings(showAgenda: true),
+          monthViewSettings: const MonthViewSettings(showAgenda: true),
         ),
       ),
     );
   }
   _DataSource _getDataSource() {
     final List<Appointment> appointments = <Appointment>[];
-    final DateTime exceptionDate = DateTime(2021, 07, 20);
+    final DateTime exceptionDate = DateTime(2022, 07, 20);
     final Appointment normalAppointment = Appointment(
-      startTime: DateTime(2021, 07, 11, 10),
-      endTime: DateTime(2021, 07, 11, 12),
+      startTime: DateTime(2022, 07, 11, 10),
+      endTime: DateTime(2022, 07, 11, 12),
       subject: 'Planning',
       id: '01',
       color: Colors.green,
@@ -54,8 +57,8 @@ class ScheduleExample extends State<AppointmentDetails> {
     );
     appointments.add(normalAppointment);
     final Appointment recurrenceAppointment = Appointment(
-      startTime: DateTime(2021, 07, 12, 10),
-      endTime: DateTime(2021, 07, 12, 12),
+      startTime: DateTime(2022, 07, 12, 10),
+      endTime: DateTime(2022, 07, 12, 12),
       subject: 'Scrum meeting',
       id: '02',
       recurrenceRule: 'FREQ=DAILY;INTERVAL=1;COUNT=10',
@@ -84,19 +87,14 @@ class ScheduleExample extends State<AppointmentDetails> {
       context: context,
       // ignore: deprecated_member_use
       builder: (BuildContext context) {
-        return new AlertDialog(
+        return AlertDialog(
           title: Container(
-            child: Text("Appointment Details"),
+            child: const Text("Appointment Details"),
           ),
           contentPadding: const EdgeInsets.all(16.0),
-          content: Text("Subject: " +
-              appointment.subject +
-              "\nId: " +
-              appointment.id.toString() +
-              "\nRecurrenceId: " +
-              appointment.recurrenceId.toString()+ "\nAppointment type: "+appointment.appointmentType.toString()),
+          content: Text("Subject: ${appointment.subject}\nId: ${appointment.id}\nRecurrenceId: ${appointment.recurrenceId}\nAppointment type: ${appointment.appointmentType}"),
           actions: <Widget>[
-            new TextButton(
+            TextButton(
                 child: const Text('OK'),
                 onPressed: () {
                   Navigator.pop(context);
