@@ -16,32 +16,7 @@ Id can be set to all the appointment types where the internally created occurren
 
 The recurrenceId of the exception appointment and the id of the pattern appointment should be the same. The recurrenceId should be specified only for exception appointments. It is not required for occurrence and normal appointments.
 
-```
-
-final Appointment normalAppointment = Appointment(
-  startTime: DateTime(2021, 07, 11, 10),
-  endTime: DateTime(2021, 07, 11, 12),
-  subject: 'Planning',
-  id: '01',
-  color: Colors.green,
-  recurrenceExceptionDates: <DateTime>[exceptionDate],
-);
-appointments.add(normalAppointment);
-final Appointment recurrenceAppointment = Appointment(
-  startTime: DateTime(2021, 07, 12, 10),
-  endTime: DateTime(2021, 07, 12, 12),
-  subject: 'Scrum meeting',
-  id: '02',
-  recurrenceRule: 'FREQ=DAILY;INTERVAL=1;COUNT=10',
-  color: Colors.purple,
-  recurrenceExceptionDates: <DateTime>[exceptionDate],
-);
-appointments.add(recurrenceAppointment);
-
-```
-
 You can also refer our UG documentation to know more about [Appointments](https://help.syncfusion.com/flutter/calendar/appointments) in the Flutter Calendar.
-
 
 ## Requirements to run the demo
 * [VS Code](https://code.visualstudio.com/download)
